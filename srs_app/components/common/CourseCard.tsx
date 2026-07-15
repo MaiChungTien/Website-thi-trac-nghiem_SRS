@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-// Khai báo kiểu dữ liệu cho đúng với cấu trúc truyền vào
+// Bổ sung thêm thuộc tính priority vào interface
 interface CourseProps {
   course: {
     id: number;
@@ -13,6 +13,7 @@ interface CourseProps {
     img: string;
     locked: boolean;
   };
+  priority?: boolean; // Tùy chọn ưu tiên tải ảnh
 }
 
 // Hàm render sao đánh giá
@@ -28,17 +29,20 @@ function StarRating({ count = 5 }: { count?: number }) {
   );
 }
 
-export default function CourseCard({ course }: CourseProps) {
+export default function CourseCard({ course, priority = false }: CourseProps) {
   const router = useRouter();
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-[0_0_35px_rgba(231,231,231,0.6)]">
       
-      {/* 1. Thay thế <img> bằng <Image> của Next.js */}
+      {/* Cập nhật lại cấu hình Image */}
       <div className="relative h-52 w-full overflow-hidden bg-gray-100">
         <Image 
           src={course.img} 
           alt={course.title} 
           fill
+          // Sửa 'size' thành 'sizes', và khai báo theo chuẩn responsive
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 390px"
+          priority={priority} // Xử lý cảnh báo LCP
           className="object-cover"
         />
       </div>
@@ -64,11 +68,11 @@ export default function CourseCard({ course }: CourseProps) {
           {course.description}
         </p>
 
-        {/* CTA Button với logic điều hướng */}
+        {/* CTA Button */}
         {course.locked ? (
           <div className="flex items-center gap-3">
             <button 
-              onClick={() => router.push('/auth/login')} // Đã khóa -> Đăng nhập
+              onClick={() => router.push('/auth/login')} 
               className="px-6 py-2.5 rounded-full text-white font-semibold bg-[#f7a83a] text-[18px]"
             >
               Mở khóa đề thi
@@ -77,10 +81,10 @@ export default function CourseCard({ course }: CourseProps) {
           </div>
         ) : (
           <button 
-            onClick={() => router.push(`/courses/${course.id}`)} // Mở khóa -> Vào thi
+            onClick={() => router.push(`/courses/${course.id}`)} 
             className="px-6 py-2.5 rounded-full text-white font-semibold bg-[#2cc302] text-[18px]"
           >
-            Thi thử
+            Làm bài thi
           </button>
         )}
       </div>

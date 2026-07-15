@@ -1,21 +1,33 @@
+import { cookies } from "next/headers";
+import Header from "@/components/common/Header";
+import Footer from "@/components/common/Footer";
+import HeroSection from "@/components/common/HeroSection";
+import CoursesSection from "@/components/common/CoursesSection";
 
-import { Suspense } from 'react';
-import { CardsSkeleton } from '@/app/ui/skeletons';
+// Bắt buộc render lại mỗi khi có request để kiểm tra cookie mới nhất
+export const dynamic = "force-dynamic";
 
-export default function StudentDashboardPage(){
-  return(
-    <section className="space-y-4">
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-2xl font-semibold text-slate-900">Bộ đề thi</h1>
-          <p className="mt-2 text-sm text-slate-600">
-            My recent courses
-          </p>
-        </div>
-      <div>
-        <Suspense fallback={<CardsSkeleton/>}>
+export default async function StudentDashboardPage() {
+  // Đọc trực tiếp Cookie từ Server
+  const cookieStore = await cookies();
+  const token = cookieStore.get("auth_token")?.value;
+  const role = cookieStore.get("user_role")?.value;
+  const isLoggedIn = !!token;
 
-        </Suspense>
-      </div>
-    </section>
-  )
+  return (
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+    >
+      {/* 1. Truyền attribute động cho Header */}
+      <Header isLoggedIn={isLoggedIn} role={role} />
+
+      <HeroSection />
+
+      {/* 2. Gọi API riêng cho trang chủ: Lấy top 4 course rating 5.0 */}
+      <CoursesSection apiQuery="?rating=5.0&limit=4" showExploreButton={true} />
+
+      <Footer />
+    </div>
+  );
 }
