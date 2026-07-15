@@ -1,3 +1,4 @@
+// app/auth/register/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -5,26 +6,10 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { authService } from "@/services/auth.service";
 
-// 1. Định nghĩa Schema xác thực dữ liệu chặt chẽ
-const registerSchema = z
-  .object({
-    username: z.string().min(3, "Tên đăng nhập phải có ít nhất 3 ký tự"),
-    fullName: z.string().min(1, "Vui lòng nhập họ và tên"),
-    email: z.string().min(1, "Vui lòng nhập email").email("Định dạng email không hợp lệ"),
-    mobile: z.string().regex(/(84|0[3|5|7|8|9])+([0-9]{8})\b/, "Số điện thoại không hợp lệ"),
-    address: z.string().min(1, "Vui lòng nhập địa chỉ"),
-    password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
-    confirmPassword: z.string().min(1, "Vui lòng xác nhận mật khẩu"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Mật khẩu xác nhận không khớp",
-    path: ["confirmPassword"], // Hiển thị lỗi ngay dưới trường confirmPassword
-  });
-
-type RegisterFormInputs = z.infer<typeof registerSchema>;
+// Import Schema và Type từ file validation.ts
+import { registerSchema, type RegisterFormInputs } from "@/utils/validation";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -43,18 +28,17 @@ export default function RegisterPage() {
     try {
       // 1. Tách bỏ confirmPassword vì server không cần trường này
       const { confirmPassword, ...submitData } = data;
-      
+
       console.log("Đang gửi dữ liệu đăng ký:", submitData);
-      
+
       // 2. Gọi API thông qua authService
       await authService.register(submitData);
-      
+
       // 3. Hiển thị thông báo thành công (Nên dùng thư viện Toast ở đây)
-      alert("Đăng ký thành công! Vui lòng đăng nhập."); // Tạm thời dùng alert
-      
+      alert("Đăng ký thành công! Vui lòng đăng nhập.");
+
       // 4. Điều hướng người dùng về trang đăng nhập
       router.push("/auth/login");
-      
     } catch (error: any) {
       // Xử lý lỗi trả về từ API (ví dụ: Email đã tồn tại)
       console.error("Lỗi xử lý đăng ký:", error.message);
@@ -73,16 +57,16 @@ export default function RegisterPage() {
           className="absolute inset-0 object-cover"
           priority
         />
-        
+
         <div className="absolute inset-0 bg-primary-dark/80" />
 
         <div className="relative z-10 flex items-center justify-between px-8 py-6">
           <div className="relative h-10 w-32">
-            <Image 
-              src="/images/school_icon.svg" 
-              alt="Ausnutria" 
-              fill 
-              className="object-contain object-left" 
+            <Image
+              src="/images/school_icon.svg"
+              alt="Ausnutria"
+              fill
+              className="object-contain object-left"
             />
           </div>
         </div>
@@ -90,10 +74,12 @@ export default function RegisterPage() {
         <div className="relative z-10 flex-1 flex flex-col justify-end px-12 pb-16">
           <div className="max-w-xl">
             <h1 className="text-white mb-5 text-[35px] font-bold leading-snug">
-              Welcome to SRS Academy!
+              Chào mừng đến với SRS Academy!
             </h1>
             <p className="text-white mb-8 text-base font-medium leading-relaxed">
-              Nền tảng ôn thi trắc nghiệm trực tuyến hàng đầu. Đăng ký ngay để thử sức với hàng ngàn đề thi đa dạng, tích lũy điểm số và đánh giá tiến độ học tập của bản thân.
+              Nền tảng ôn thi trắc nghiệm trực tuyến hàng đầu. Đăng ký ngay để
+              thử sức với hàng ngàn đề thi đa dạng, tích lũy điểm số và đánh giá
+              tiến độ học tập của bản thân.
             </p>
             <div className="flex gap-3 items-center">
               <div className="h-1 w-12 bg-white rounded-full shadow-sm" />
@@ -106,7 +92,6 @@ export default function RegisterPage() {
 
       {/* ---------------- CỘT PHẢI - FORM ĐĂNG KÝ ---------------- */}
       <div className="w-full lg:w-[600px] xl:w-[700px] flex flex-col justify-center px-8 sm:px-12 md:px-16 lg:px-20 bg-white z-10 py-10 h-screen overflow-y-auto">
-        
         <div className="flex flex-col items-center mb-8 text-center">
           <div className="relative w-20 h-20 mb-4">
             <Image
@@ -122,83 +107,114 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          {/* Layout Grid cho form để tiết kiệm không gian */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            
-            {/* Tên đăng nhập */}
             <div className="space-y-1">
-              <label className="text-sm font-medium text-surface-text">Tên đăng nhập <span className="text-red-500">*</span></label>
+              <label className="text-sm font-medium text-surface-text">
+                Tên đăng nhập <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 {...register("username")}
                 className={`w-full px-4 py-3 rounded-lg bg-surface border outline-none text-surface-text text-sm transition-all ${
-                  errors.username ? "border-red-500 focus:border-red-500" : "border-transparent focus:border-primary"
+                  errors.username
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-transparent focus:border-primary"
                 }`}
               />
-              {errors.username && <p className="text-red-500 text-xs">{errors.username.message}</p>}
+              {errors.username && (
+                <p className="text-red-500 text-xs">
+                  {errors.username.message}
+                </p>
+              )}
             </div>
 
-            {/* Họ và tên */}
             <div className="space-y-1">
-              <label className="text-sm font-medium text-surface-text">Họ và tên <span className="text-red-500">*</span></label>
+              <label className="text-sm font-medium text-surface-text">
+                Họ và tên <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 {...register("fullName")}
                 className={`w-full px-4 py-3 rounded-lg bg-surface border outline-none text-surface-text text-sm transition-all ${
-                  errors.fullName ? "border-red-500 focus:border-red-500" : "border-transparent focus:border-primary"
+                  errors.fullName
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-transparent focus:border-primary"
                 }`}
               />
-              {errors.fullName && <p className="text-red-500 text-xs">{errors.fullName.message}</p>}
+              {errors.fullName && (
+                <p className="text-red-500 text-xs">
+                  {errors.fullName.message}
+                </p>
+              )}
             </div>
 
-            {/* Email */}
             <div className="space-y-1">
-              <label className="text-sm font-medium text-surface-text">Email <span className="text-red-500">*</span></label>
+              <label className="text-sm font-medium text-surface-text">
+                Email <span className="text-red-500">*</span>
+              </label>
               <input
                 type="email"
                 {...register("email")}
                 className={`w-full px-4 py-3 rounded-lg bg-surface border outline-none text-surface-text text-sm transition-all ${
-                  errors.email ? "border-red-500 focus:border-red-500" : "border-transparent focus:border-primary"
+                  errors.email
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-transparent focus:border-primary"
                 }`}
               />
-              {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-red-500 text-xs">{errors.email.message}</p>
+              )}
             </div>
 
-            {/* Số điện thoại */}
             <div className="space-y-1">
-              <label className="text-sm font-medium text-surface-text">Số điện thoại <span className="text-red-500">*</span></label>
+              <label className="text-sm font-medium text-surface-text">
+                Số điện thoại <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 {...register("mobile")}
                 className={`w-full px-4 py-3 rounded-lg bg-surface border outline-none text-surface-text text-sm transition-all ${
-                  errors.mobile ? "border-red-500 focus:border-red-500" : "border-transparent focus:border-primary"
+                  errors.mobile
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-transparent focus:border-primary"
                 }`}
               />
-              {errors.mobile && <p className="text-red-500 text-xs">{errors.mobile.message}</p>}
+              {errors.mobile && (
+                <p className="text-red-500 text-xs">{errors.mobile.message}</p>
+              )}
             </div>
+          </div>
 
-          </div> {/* End Grid */}
-
-          {/* Địa chỉ (Full width) */}
           <div className="space-y-1">
-            <label className="text-sm font-medium text-surface-text">Địa chỉ</label>
+            <label className="text-sm font-medium text-surface-text">
+              Địa chỉ
+            </label>
             <input
               type="text"
               {...register("address")}
               className={`w-full px-4 py-3 rounded-lg bg-surface border outline-none text-surface-text text-sm transition-all ${
-                errors.address ? "border-red-500 focus:border-red-500" : "border-transparent focus:border-primary"
+                errors.address
+                  ? "border-red-500 focus:border-red-500"
+                  : "border-transparent focus:border-primary"
               }`}
             />
-            {errors.address && <p className="text-red-500 text-xs">{errors.address.message}</p>}
+            {errors.address && (
+              <p className="text-red-500 text-xs">{errors.address.message}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* Mật khẩu */}
             <div className="space-y-1">
-              <label className="text-sm font-medium text-surface-text">Mật khẩu <span className="text-red-500">*</span></label>
-              <div className={`flex rounded-lg border bg-surface transition-all ${
-                errors.password ? "border-red-500" : "border-transparent focus-within:border-primary"
-              }`}>
+              <label className="text-sm font-medium text-surface-text">
+                Mật khẩu <span className="text-red-500">*</span>
+              </label>
+              <div
+                className={`flex rounded-lg border bg-surface transition-all ${
+                  errors.password
+                    ? "border-red-500"
+                    : "border-transparent focus-within:border-primary"
+                }`}
+              >
                 <input
                   type={showPassword ? "text" : "password"}
                   {...register("password")}
@@ -212,15 +228,24 @@ export default function RegisterPage() {
                   {showPassword ? "Ẩn" : "Hiện"}
                 </button>
               </div>
-              {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
+              {errors.password && (
+                <p className="text-red-500 text-xs">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
-            {/* Xác nhận Mật khẩu */}
             <div className="space-y-1">
-              <label className="text-sm font-medium text-surface-text">Xác nhận mật khẩu <span className="text-red-500">*</span></label>
-              <div className={`flex rounded-lg border bg-surface transition-all ${
-                errors.confirmPassword ? "border-red-500" : "border-transparent focus-within:border-primary"
-              }`}>
+              <label className="text-sm font-medium text-surface-text">
+                Xác nhận mật khẩu <span className="text-red-500">*</span>
+              </label>
+              <div
+                className={`flex rounded-lg border bg-surface transition-all ${
+                  errors.confirmPassword
+                    ? "border-red-500"
+                    : "border-transparent focus-within:border-primary"
+                }`}
+              >
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   {...register("confirmPassword")}
@@ -234,11 +259,14 @@ export default function RegisterPage() {
                   {showConfirmPassword ? "Ẩn" : "Hiện"}
                 </button>
               </div>
-              {errors.confirmPassword && <p className="text-red-500 text-xs">{errors.confirmPassword.message}</p>}
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-xs">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* Nút Đăng ký */}
           <button
             type="submit"
             disabled={isSubmitting}
@@ -247,7 +275,6 @@ export default function RegisterPage() {
             {isSubmitting ? "Đang xử lý..." : "Đăng ký"}
           </button>
 
-          {/* Nút quay lại đăng nhập */}
           <div className="text-center mt-4">
             <span className="text-sm text-gray-500">Đã có tài khoản? </span>
             <button
@@ -258,7 +285,6 @@ export default function RegisterPage() {
               Đăng nhập ngay
             </button>
           </div>
-
         </form>
       </div>
     </div>

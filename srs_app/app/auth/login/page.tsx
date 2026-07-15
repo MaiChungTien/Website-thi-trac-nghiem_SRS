@@ -1,3 +1,4 @@
+// app/auth/login/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -5,18 +6,10 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { authService } from "@/services/auth.service";
 
-const loginSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Vui lòng nhập email")
-    .email("Định dạng email không hợp lệ"),
-  password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
-});
-
-type LoginFormInputs = z.infer<typeof loginSchema>;
+// Import Schema và Type từ file validation.ts
+import { loginSchema, type LoginFormInputs } from "@/utils/validation";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -36,15 +29,16 @@ export default function LoginPage() {
 
       // Kiểm tra role và điều hướng
       if (response.user.role === "admin") {
-        router.push("/dashboard"); // Route của thư mục (admin)
+        router.push("/dashboard");
       } else {
-        router.push("/student/dashboard"); // Route của thư mục (student)
+        router.push("/student/dashboard");
       }
     } catch (error: any) {
       console.error("Lỗi đăng nhập:", error.message);
       // TODO: Hiển thị Toast thông báo lỗi ở đây
     }
   };
+
   return (
     <div className="min-h-screen flex">
       {/* ---------------- CỘT TRÁI - HERO BANNER ---------------- */}
@@ -57,7 +51,6 @@ export default function LoginPage() {
           priority
         />
 
-        {/* Đã sử dụng class bg-primary-dark thay vì giá trị hardcode */}
         <div className="absolute inset-0 bg-primary-dark/80" />
 
         <div className="relative z-10 flex items-center justify-between px-8 py-6">
@@ -74,7 +67,7 @@ export default function LoginPage() {
         <div className="relative z-10 flex-1 flex flex-col justify-end px-12 pb-16">
           <div className="max-w-xl">
             <h1 className="text-white mb-5 text-[35px] font-bold leading-snug">
-              Welcome to SRS Academy!
+              Chào mừng đến với SRS Academy!
             </h1>
             <p className="text-white mb-8 text-base font-medium leading-relaxed">
               Nền tảng ôn thi trắc nghiệm trực tuyến hàng đầu. Đăng nhập ngay để

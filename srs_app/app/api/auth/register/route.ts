@@ -1,19 +1,22 @@
-import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
+import { NextResponse } from "next/server";
+import fs from "fs/promises";
+import path from "path";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { username, email, password, fullName, mobile, address } = body;
 
-    const dbPath = path.join(process.cwd(), 'db.json');
-    const fileData = await fs.readFile(dbPath, 'utf8');
+    const dbPath = path.join(process.cwd(), "db.json");
+    const fileData = await fs.readFile(dbPath, "utf8");
     const db = JSON.parse(fileData);
 
     // Kiểm tra trùng email
     if (db.users.some((u: any) => u.email === email)) {
-      return NextResponse.json({ message: 'Email đã được sử dụng' }, { status: 400 });
+      return NextResponse.json(
+        { message: "Email đã được sử dụng" },
+        { status: 400 },
+      );
     }
 
     // Tạo user mới (Ép cứng role là 'student' theo yêu cầu)
@@ -25,7 +28,7 @@ export async function POST(request: Request) {
       fullName,
       mobile,
       address,
-      role: 'student' 
+      role: "student",
     };
 
     // Ghi vào file
@@ -33,8 +36,11 @@ export async function POST(request: Request) {
     await fs.writeFile(dbPath, JSON.stringify(db, null, 2));
 
     const { password: _, ...userInfo } = newUser;
-    return NextResponse.json({ message: 'Đăng ký thành công', user: userInfo }, { status: 201 });
+    return NextResponse.json(
+      { message: "Đăng ký thành công", user: userInfo },
+      { status: 201 },
+    );
   } catch (error) {
-    return NextResponse.json({ message: 'Lỗi server' }, { status: 500 });
+    return NextResponse.json({ message: "Lỗi server" }, { status: 500 });
   }
 }
