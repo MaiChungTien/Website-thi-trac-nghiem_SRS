@@ -1,0 +1,62 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@srs.edu.vn",
+      "password": "password123",
+      "role": "admin",
+      "fullName": "System Administrator",
+      "mobile": "0987654321",
+      "address": "268 Lý Thường Kiệt, Phường 14, Quận 10, TP.HCM"
+    },
+    {
+      "id": "1784016212532",
+      "username": "tienmai",
+      "email": "maichungtiengd@gmail.com",
+      "password": "2142005tmc",
+      "fullName": "Mai Chung Tiến",
+      "mobile": "0906322104",
+      "address": "325 Phan Van Tri",
+      "role": "student"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Toán học",
+      "description": "Tổng hợp đề thi thử đa dạng mức độ, giúp bạn rèn luyện tư duy logic, tối ưu hóa tốc độ và phương pháp giải toán trắc nghiệm.",
+      "exams": "8 đề thi",
+      "rating": "5.0",
+      "img": "/images/toan_hoc.jpg",
+      "locked": false
+    },
+    {
+      "id": 2,
+      "title": "Hóa học",
+      "description": "Hệ thống câu hỏi lý thuyết và bài tập tính toán từ cơ bản đến nâng cao, bám sát cấu trúc đề thi thực tế.",
+      "exams": "2 đề thi",
+      "rating": "5.0",
+      "img": "/images/hoa_hoc.png",
+      "locked": false
+    },
+    {
+      "id": 3,
+      "title": "Vật Lý",
+      "description": "Rèn luyện phản xạ giải nhanh các dạng bài tập Vật lý thông qua hàng trăm đề kiểm tra được cập nhật liên tục.",
+      "exams": "5 đề thi",
+      "rating": "5.0",
+      "img": "/images/vat_ly.jpg",
+      "locked": true
+    },
+    {
+      "id": 4,
+      "title": "Lịch sử",
+      "description": "Hệ thống hóa các cột mốc và sự kiện lịch sử quan trọng qua bộ câu hỏi trắc nghiệm trực quan, dễ hiểu và dễ nhớ.",
+      "exams": "5 đề thi",
+      "rating": "5.0",
+      "img": "/images/lich_su.png",
+      "locked": true
+    }
+  ]
+}
