@@ -13,6 +13,8 @@ interface ExamListSearchableProps {
   exams: Exam[];
   title: string;
   placeholder?: string;
+  onExamAdded?: (exam: Exam) => void;
+  onExamDeleted?: (id: string) => void;
 }
 
 export function ExamListSearchable({ exams, title, placeholder = 'Tìm kiếm đề thi...' }: ExamListSearchableProps) {
