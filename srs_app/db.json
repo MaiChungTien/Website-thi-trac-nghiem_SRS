@@ -24,7 +24,7 @@
   ],
   "courses": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Toán học",
       "description": "Tổng hợp đề thi thử đa dạng mức độ, giúp bạn rèn luyện tư duy logic, tối ưu hóa tốc độ và phương pháp giải toán trắc nghiệm.",
       "exams": "8 đề thi",
@@ -34,7 +34,7 @@
       "category": "science"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Hóa học",
       "description": "Hệ thống câu hỏi lý thuyết và bài tập tính toán từ cơ bản đến nâng cao, bám sát cấu trúc đề thi thực tế.",
       "exams": "2 đề thi",
@@ -44,7 +44,7 @@
       "category": "science"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Vật Lý",
       "description": "Rèn luyện phản xạ giải nhanh các dạng bài tập Vật lý thông qua hàng trăm đề kiểm tra được cập nhật liên tục.",
       "exams": "5 đề thi",
@@ -54,7 +54,7 @@
       "category": "science"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Lịch sử",
       "description": "Hệ thống hóa các cột mốc và sự kiện lịch sử quan trọng qua bộ câu hỏi trắc nghiệm trực quan, dễ hiểu và dễ nhớ.",
       "exams": "5 đề thi",
@@ -64,27 +64,27 @@
       "category": "social"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Địa lý",
       "description": "Nắm vững kiến thức địa lý tự nhiên và kinh tế - xã hội, rèn luyện kỹ năng đọc Atlat và phân tích số liệu biểu đồ.",
-      "exams": "8 đề thi",
+      "exams": "1 đề thi",
       "rating": "5.0",
       "img": "/images/dia_ly.jpg",
       "locked": false,
       "category": "social"
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Sinh học",
       "description": "Ôn tập toàn diện các quy luật di truyền, sinh thái học và tiến hóa sinh giới để tự tin chinh phục điểm số tối đa.",
-      "exams": "2 đề thi",
+      "exams": "1 đề thi",
       "rating": "5.0",
       "img": "/images/sinh_hoc.jpg",
       "locked": true,
       "category": "science"
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Tin học",
       "description": "Kiểm tra kiến thức tin học cơ sở, tư duy thuật toán và trắc nghiệm cú pháp các ngôn ngữ lập trình phổ biến hiện nay.",
       "exams": "5 đề thi",
@@ -94,7 +94,7 @@
       "category": "science"
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "Tiếng anh",
       "description": "Nâng cao nền tảng ngữ pháp, vốn từ vựng và kỹ năng đọc hiểu qua các đề thi thử bám sát chuẩn đầu ra thực tế.",
       "exams": "5 đề thi",
@@ -104,7 +104,7 @@
       "category": "social"
     },
     {
-      "id": 9,
+      "id": "9",
       "title": "Ngữ văn",
       "description": "Rèn luyện kỹ năng đọc hiểu văn bản, cảm thụ văn học và phương pháp nghị luận xã hội, nghị luận văn học sắc bén.",
       "exams": "10 đề thi",
@@ -114,7 +114,7 @@
       "category": "social"
     },
     {
-      "id": 10,
+      "id": "10",
       "title": "Giáo dục công dân",
       "description": "Nắm bắt nhanh các khái niệm pháp luật, đạo đức và lối sống thông qua bộ câu hỏi tình huống thực tế thường gặp.",
       "exams": "4 đề thi",
@@ -124,17 +124,17 @@
       "category": "social"
     },
     {
-      "id": 11,
+      "id": "11",
       "title": "Tiếng Pháp",
       "description": "Củng cố từ vựng, ngữ pháp và rèn luyện kỹ năng làm bài trắc nghiệm Tiếng Pháp bám sát cấu trúc đề thi DELF.",
-      "exams": "3 đề thi",
+      "exams": "1 đề thi",
       "rating": "4.7",
       "img": "/images/tieng_phap.jpg",
       "locked": false,
       "category": "social"
     },
     {
-      "id": 12,
+      "id": "12",
       "title": "Khoa học tự nhiên",
       "description": "Đề thi tổng hợp đánh giá năng lực tư duy logic và kiến thức liên môn Vật lý, Hóa học và Sinh học.",
       "exams": "6 đề thi",
@@ -143,5 +143,572 @@
       "locked": true,
       "category": "science"
     }
-  ]
+  ],
+  "exams": [
+    {
+      "id": "math-1",
+      "title": "Math Test",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What is 1+1?",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": 2,
+          "question": "What is 2*2?",
+          "options": [
+            "2",
+            "4",
+            "6",
+            "8"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": 3,
+          "question": "What is 3*3?",
+          "options": [
+            "3",
+            "6",
+            "9",
+            "1"
+          ],
+          "answer": "C"
+        },
+        {
+          "id": 1784194505491.1855,
+          "question": "3*4=?",
+          "options": [
+            "12",
+            "11",
+            "10",
+            "9"
+          ],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "math-2",
+      "title": "Math Practice",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What is the square root of 16?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "C"
+        },
+        {
+          "id": 2,
+          "question": "What is 10% of 100?",
+          "options": [
+            "1",
+            "10",
+            "100",
+            "1000"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": 3,
+          "question": "What is 5+5?",
+          "options": [
+            "5",
+            "10",
+            "15",
+            "20"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": 1784194876058.69,
+          "question": "Given the equation: 5x + 1 = 11. What is the value of x?",
+          "options": [
+            "5",
+            "1",
+            "11",
+            "2"
+          ],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "eng-1",
+      "title": "English Test",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What is the past tense of the verb 'do'?",
+          "options": [
+            "don't",
+            "didn't",
+            "done",
+            "did"
+          ],
+          "answer": "D"
+        },
+        {
+          "id": 2,
+          "question": "Can I park here?",
+          "options": [
+            "Only for an hour",
+            "It is the same place",
+            "I suppose I can",
+            "Sorry, I can't"
+          ],
+          "answer": "A"
+        },
+        {
+          "id": 3,
+          "question": "I can't understand this email.",
+          "options": [
+            "Would you like some help?",
+            "Don't you know?",
+            "I suppose you can",
+            "What did you do?"
+          ],
+          "answer": "A"
+        },
+        {
+          "id": 1784195591139.7812,
+          "question": "What does \"dog\" mean in Vietnamese?",
+          "options": [
+            "Con cho",
+            "Con ga",
+            "Con meo",
+            "Con bo"
+          ],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "phys-1",
+      "title": "Physics Test",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Đơn vị đo chiều dài trong Hệ đo lường quốc tế (SI) là:",
+          "options": [
+            "Kilôgam (kg)",
+            "Mét (m)",
+            "Giây (s)",
+            "Lít (L)"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": 2,
+          "question": "Dụng cụ dùng để đo khối lượng của một vật là:",
+          "options": [
+            "Thước thẳng",
+            "Đồng hồ",
+            "Cân",
+            "Bình chia độ"
+          ],
+          "answer": "C"
+        },
+        {
+          "id": 3,
+          "question": "Đơn vị đo thời gian là:",
+          "options": [
+            "Kilôgam (kg)",
+            "Mét (m)",
+            "Giây (s)",
+            "Lít (L)"
+          ],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "chem-1",
+      "title": "Chemistry Test",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Chất nào sau đây là đơn chất?",
+          "options": [
+            "Nước (H₂O)",
+            "Muối ăn (NaCl)",
+            "Khí oxi (O₂)",
+            "Khí cacbonic (CO₂)"
+          ],
+          "answer": "C"
+        },
+        {
+          "id": 2,
+          "question": "Công thức hóa học của nước là:",
+          "options": [
+            "CO₂",
+            "H₂O",
+            "O₂",
+            "NaCl"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": 3,
+          "question": "Nguyên tử gồm những hạt cơ bản nào?",
+          "options": [
+            "Proton, nơtron và electron",
+            "Proton và electron",
+            "Nơtron và electron",
+            "Proton và nơtron"
+          ],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gZU43VN3CjY",
+      "title": "Đề thi Lập trình – Cấu trúc dữ liệu Danh sách liên kết",
+      "questions": [
+        {
+          "id": "q1",
+          "question": "In a singly linked list, each node contains?",
+          "options": [
+            "Data and a pointer to the next node",
+            "Data only",
+            "Two pointers: previous and next",
+            "Data and a pointer to the previous node"
+          ],
+          "answer": "A"
+        },
+        {
+          "id": "q2",
+          "question": "Which operation has O(1) time complexity in a linked list?",
+          "options": [
+            "Access by index",
+            "Insert at head",
+            "Search for a value",
+            "Delete from middle"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": "q3",
+          "question": "What does 'null' indicate in a linked list node's next pointer?",
+          "options": [
+            "The node is empty",
+            "It points tothe first node",
+            "It points to the last node",
+            "There is no next node (end of list)"
+          ],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "695DaIyFm9A",
+      "title": "Đề thi Lập trình – Thuật toán sắp xếp",
+      "questions": [
+        {
+          "id": "q1",
+          "question": "Which sorting algorithm has thebest average‑case time complexity of O(n log n)?",
+          "options": [
+            "Bubble Sort",
+            "Insertion Sort",
+            "Merge Sort",
+            "Selection Sort"
+          ],
+          "answer": "C"
+        },
+        {
+          "id": "q2",
+          "question": "In QuickSort, the pivot element is used to?",
+          "options": [
+            "Divide the array into two halves",
+            "Swap the first and last elements",
+            "Count the number of elements",
+            "Determine the recursion depth"
+          ],
+          "answer": "A"
+        },
+        {
+          "id": "q3",
+          "question": "Which of the following is a stable sorting algorithm?",
+          "options": [
+            "QuickSort",
+            "HeapSort",
+            "MergeSort",
+            "ShellSort"
+          ],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "i05JAUUdwDI",
+      "title": "Đề thi Văn học – Truyện Kiều – Truyện về tình yêu",
+      "questions": [
+        {
+          "id": "q1",
+          "question": "Truyện Kiều được viết bởi tác giả nào?",
+          "options": [
+            "Nguyễn Du",
+            "Nguyễn Trãi",
+            "Lê Quý Đôn",
+            "Hồ Xuân Hương"
+          ],
+          "answer": "A"
+        },
+        {
+          "id": "q2",
+          "question": "Kiều được bán và bị lừa bởi ai?",
+          "options": [
+            "Độ Huyền",
+            "Thúc Sắc",
+            "Tú Bà",
+            "Kim Trọng"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": "q3",
+          "question": "Which main theme dominates Truyện Kiều?",
+          "options": [
+            "War and peace",
+            "Love and destiny",
+            "Exploration and discovery",
+            "Family and inheritance"
+          ],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "A7e9spNI_g4",
+      "title": "Đề thi Địa lý – Bầu Trời Việt Nam",
+      "questions": [
+        {
+          "id": "q1",
+          "question": "Mùa nào trong năm có lượng� mưa trung bình cao nhất ở miền Bắc Việt Nam?",
+          "options": [
+            "Mùa xuân",
+            "Mùa hè",
+            "Mùa thu",
+            "Mùa đông"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": "q2",
+          "question": "Bờ biển nào có độ dài dài nhất trên lãnh thổ Việt Nam?",
+          "options": [
+            "Bắc Bộ",
+            "Trung Bộ",
+            "Nam Bộ",
+            "Đảo"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": "q3",
+          "question": "Which river is the longest in Vietnam?",
+          "options": [
+            "Mekong",
+            "Đong Nai",
+            "Perfume (Huong)",
+            "Red"
+          ],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "math-1784192022812",
+      "title": "test add de toan",
+      "questions": [
+        {
+          "id": 1784191923121.8784,
+          "question": "1+1=?",
+          "options": [
+            "1",
+            "2",
+            "11",
+            "0"
+          ],
+          "answer": "B"
+        },
+        {
+          "id": 1784191940949.2036,
+          "question": "1-1=?",
+          "options": [
+            "1",
+            "2",
+            "0",
+            "11"
+          ],
+          "answer": "C"
+        },
+        {
+          "id": 1784191961440.266,
+          "question": "3+2",
+          "options": [
+            "1",
+            "32",
+            "5",
+            "23"
+          ],
+          "answer": "C"
+        },
+        {
+          "id": 1784194835269.3196,
+          "question": "10+10=?",
+          "options": [
+            "20",
+            "100",
+            "0",
+            "1010"
+          ],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "math-1784194985536",
+      "title": "test de toan 2",
+      "questions": [
+        {
+          "id": 1784194965884.0784,
+          "question": "What is 1 + 1?",
+          "options": [
+            "2",
+            "11",
+            "0",
+            "1"
+          ],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "math-1784196359894",
+      "title": "test de toan 3",
+      "questions": [
+        {
+          "id": 1784196289003.2297,
+          "question": "what is 2 x 2?",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "d"
+        },
+        {
+          "id": 1784196401006.695,
+          "question": "What is 2 - 2 =0",
+          "options": [
+            "1",
+            "0",
+            "2",
+            "4"
+          ],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "exam-1784253584679-737",
+      "title": "test de toan 4",
+      "questions": [
+        {
+          "id": 1784253565496.1147,
+          "question": "1+1=?",
+          "options": [
+            "1",
+            "2",
+            "11",
+            "0"
+          ],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "chem-1784254766528",
+      "title": "test de hoa 1",
+      "questions": [
+        {
+          "id": 1784254744974.1604,
+          "question": "H2O la chat gi",
+          "options": [
+            "Nuoc",
+            "Lua",
+            "Mua",
+            "Gio"
+          ],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "geo-1784257842088",
+      "title": "test de dia ly",
+      "questions": [
+        {
+          "id": 1784257804485.4082,
+          "question": "Ha Noi thuoc vung nao?",
+          "options": [
+            "Mien Bac",
+            "Mien Trung",
+            "Mien Nam",
+            "Mien Tay"
+          ],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "biology-1784258231400",
+      "title": "test de sinh hoc",
+      "questions": [
+        {
+          "id": 1784258211367.7444,
+          "question": "test",
+          "options": [
+            "right ans",
+            "wrong",
+            "wrong",
+            "wrong"
+          ],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "french-1784259471139",
+      "title": "test de tieng phap",
+      "questions": [
+        {
+          "id": 1784259452028.6191,
+          "question": "Bonjour la gi",
+          "options": [
+            "Xin chao",
+            "Cam on",
+            "Tam biet",
+            "Xin loi"
+          ],
+          "answer": "A"
+        }
+      ]
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

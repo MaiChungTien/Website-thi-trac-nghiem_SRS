@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { authService } from "@/services/auth.service";
+import { toast } from "react-toastify";
 
 // Import Schema và Type từ file validation.ts
 import { registerSchema, type RegisterFormInputs } from "@/utils/validation";
@@ -35,14 +36,14 @@ export default function RegisterPage() {
       await authService.register(submitData);
 
       // 3. Hiển thị thông báo thành công (Nên dùng thư viện Toast ở đây)
-      alert("Đăng ký thành công! Vui lòng đăng nhập.");
+      toast.success("Đăng ký thành công! Vui lòng đăng nhập.");
 
       // 4. Điều hướng người dùng về trang đăng nhập
       router.push("/auth/login");
     } catch (error: any) {
       // Xử lý lỗi trả về từ API (ví dụ: Email đã tồn tại)
       console.error("Lỗi xử lý đăng ký:", error.message);
-      alert(error.message || "Có lỗi xảy ra khi đăng ký");
+      toast.error(error.message || "Có lỗi xảy ra khi đăng ký");
     }
   };
 
