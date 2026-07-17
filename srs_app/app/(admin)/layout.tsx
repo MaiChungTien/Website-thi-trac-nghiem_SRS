@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
-import { Sidebar } from "@/components/admin/Sidebar";
+import Footer from "@/components/common/Footer";
+import Header from "@/components/common/Header";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <div className="flex min-h-screen">
-        <Sidebar />
-        <main className="flex-1 p-6 lg:p-8">{children}</main>
-      </div>
+    <div className="flex min-h-screen flex-col bg-slate-100" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+      <Header isLoggedIn role="admin" />
+      <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client"; 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { getCourseSlug } from "@/lib/courseMappings";
 
 // Bổ sung thêm thuộc tính priority vào interface
 interface CourseProps {
@@ -81,7 +82,12 @@ export default function CourseCard({ course, priority = false }: CourseProps) {
           </div>
         ) : (
           <button 
-            onClick={() => router.push(`/courses/${course.id}`)} 
+            onClick={() => {
+              const slug = getCourseSlug(Number(course.id));
+              // If slug is not found, fallback to using the id (though it shouldn't happen)
+              const path = slug ? `/courses/${slug}` : `/courses/${course.id}`;
+              router.push(path);
+            }} 
             className="px-6 py-2.5 rounded-full text-white font-semibold bg-[#2cc302] text-[18px]"
           >
             Làm bài thi

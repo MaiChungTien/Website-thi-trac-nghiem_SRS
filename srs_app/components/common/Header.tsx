@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { toast } from "react-toastify";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -97,14 +98,14 @@ export default function Header({ isLoggedIn, role }: HeaderProps) {
       });
 
       if (res.ok) {
-        alert("Đã cập nhật thông tin thành công!");
+        toast.success("Đã cập nhật thông tin thành công!");
         setIsProfileModalOpen(false); // Đóng modal
       } else {
-        alert("Lưu thất bại. Vui lòng thử lại.");
+        toast.error("Lưu thất bại. Vui lòng thử lại.");
       }
     } catch (error) {
       console.error("Lỗi khi lưu:", error);
-      alert("Đã xảy ra lỗi kết nối.");
+      toast.error("Đã xảy ra lỗi kết nối.");
     }
   };
 
